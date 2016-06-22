@@ -9,7 +9,7 @@ public class RunningAuction extends AbstractAuctionState {
         super(coordinator, auction);
     }
 
-    public void start(Auction auction) {
+    public void start() {
         throw new IllegalStateException("Can't start an auction that is already running: " + auction);
     }
 
@@ -20,7 +20,7 @@ public class RunningAuction extends AbstractAuctionState {
 
     public synchronized BidResponse bid(Bidder bidder, double amount, Lot lot) {
         Bid currentBid = coordinator.getStateTracker().getBid(coordinator);
-        if(amount>=currentBid.getAmount()){
+        if(amount>currentBid.getAmount()){
             coordinator.getStateTracker().setBid(getAuction().getId(), coordinator.createBid(bidder, lot, auction, amount));
             return BidResponse.Accepted;
         }else {
@@ -29,7 +29,10 @@ public class RunningAuction extends AbstractAuctionState {
     }
 
     public Bid hammerDown() {
-        return null;
+        coordinator.getStateTracker().setState(auction.getId(), coordinator.getCompletedAuction());
+        Bid winningBid = coordinator.getStateTracker().getBid(coordinator);
+        coordinator.recordWinner(winningBid);
+        return winningBid;
     }
 
     public AuctionStatus getStatus() {

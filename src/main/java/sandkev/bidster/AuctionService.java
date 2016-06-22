@@ -36,47 +36,8 @@ public interface AuctionService {
     Bidder registerBidder(String name);
 
 
-    /**
-     * start the auction
-     */
-    void start();
-
-    /**
-     * open the bidding for the next lot
-     *
-     * @return lot
-     */
-    Lot openBidding();
-
-    /**
-     * allows the bidder to request a snapshot of the next minimum bid that will supercede the current top slot
-     * @param bidder
-     * @return
-     */
-    double nod(Bidder bidder, Lot lot);
-
-    /**
-     * allow bidders to bid on the current lot
-     *
-     * @param bidder
-     * @param amount
-     * @param lot
-     * @return boolean indicating if the bid was successful
-     */
-    boolean bid(Bidder bidder, double amount, Lot lot);
+    Bid recordBid(Bidder bidder, Lot lot, Auction auction, double amount);
 
 
-    /**
-     * close the bidding on the winning bid
-     *
-     * @return the winning bid
-     */
-    Bid hammerDown();
-
-    /**
-     * close the auction when all the lots are sold
-     */
-    void close();
-
-    AuctionStatus currentState();
+    void recordWinningBid(Bid winningBid);
 }

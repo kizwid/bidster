@@ -42,10 +42,11 @@
     </dependencies>
     <build>
         <plugins>
-    <!--        <plugin>
+<!--
+            <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
-                <version>1.16.8</version>
+                &lt;!&ndash;<version>1.16.8</version>&ndash;&gt;
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -54,7 +55,8 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
+-->
 <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

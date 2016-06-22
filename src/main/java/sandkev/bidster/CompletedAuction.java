@@ -9,20 +9,20 @@ public class CompletedAuction extends AbstractAuctionState {
         super(coordinator, auction);
     }
 
-    public void start(Auction auction) {
+    public void start() {
         throw new IllegalStateException("Can't start an auction that has completed: " + auction);
     }
 
     public double nod(Bidder bidder, Lot lot) {
-        return 0;
+        throw new IllegalStateException("Can't nod in an auction that has completed: " + auction);
     }
 
     public BidResponse bid(Bidder bidder, double amount, Lot lot) {
-        return BidResponse.Accepted;
+        return BidResponse.RejectedAsAuctionIsClosed;
     }
 
     public Bid hammerDown() {
-        return null;
+        throw new IllegalStateException("Can't close an auction that has completed: " + auction);
     }
 
     public AuctionStatus getStatus() {

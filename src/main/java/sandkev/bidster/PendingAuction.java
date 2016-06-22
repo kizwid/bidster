@@ -9,7 +9,7 @@ public class PendingAuction extends AbstractAuctionState {
         super(coordinator, auction);
     }
 
-    public void start(Auction auction) {
+    public void start() {
         coordinator.getStateTracker().setState(auction.getId(), coordinator.getVirginAuction());
     }
 

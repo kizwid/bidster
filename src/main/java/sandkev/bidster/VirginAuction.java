@@ -9,7 +9,7 @@ public class VirginAuction extends AbstractAuctionState {
         super(coordinator, auction);
     }
 
-    public void start(Auction auction) {
+    public void start() {
         throw new IllegalStateException("Can't start an auction that is already running: " + auction);
     }
 

@@ -7,9 +7,8 @@ public interface AuctionState {
 
     /**
      * start the auction
-     * @param auction
      */
-    void start(Auction auction);
+    void start();
 
     /**
      * allows the bidder to request a snapshot of the next minimum bid that will supercede the current top slot
@@ -34,6 +33,7 @@ public interface AuctionState {
      *
      * @return the winning bid
      */
+    Bid hammerDown();
 
 
     /**
